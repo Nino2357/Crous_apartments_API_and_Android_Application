@@ -16,7 +16,7 @@ export class ApartmentController {
 
   @Get()
   getAllC(): Apartment[] {
-      return this.ApartmentService.getAllApartments();
+    return this.ApartmentService.getAllApartments();
     }
 
   @Post()
@@ -26,8 +26,8 @@ export class ApartmentController {
   }
 
   @Get(':id')
-  getApartmentC(@Param() params){
-    this.ApartmentService.getApartmentID(params.id);
+  getApartmentID(@Param('id') id: number): Apartment{
+    return this.ApartmentService.getApartmentID(id);
   }
 
   @Put(':id')
