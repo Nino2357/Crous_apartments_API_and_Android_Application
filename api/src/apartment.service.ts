@@ -60,11 +60,22 @@ export class ApartmentService {
     }
     return listApartment.sort((a, b) => a.nom.localeCompare(b.nom));
   }
-  public addMark(id: number){
-     this.tabFavorites.push(this.tabApartment.find(value => value.id === id));
+  public getFavorites(): Apartment[] {
+    let listApartment: Apartment[] = [];
+    let i: number;
+    for (i = 0; i < this.tabFavorites.length; i++) {
+      listApartment.push(this.tabFavorites[i]);
+    }
+    return listApartment.sort((a, b) => a.nom.localeCompare(b.nom));
   }
-  public deleteMark(id: number) {
+  public addMark(id: number): Apartment{
+    let newFavorite: Apartment = this.tabApartment.find(value => value.id === id);
+    this.tabFavorites.push(newFavorite);
+    return newFavorite;
+  }
+  public deleteMark(id: number): Apartment {
     let apartmentD = this.tabApartment.find(value => value.id === id);
     this.tabFavorites = this.tabFavorites.filter(value => value.id !== id);
+    return apartmentD;
   }
 }

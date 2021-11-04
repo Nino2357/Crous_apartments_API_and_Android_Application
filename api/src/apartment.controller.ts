@@ -25,18 +25,27 @@ export class ApartmentController {
     return apartment;
   }
 
+
+
   @Get(':id')
-  getApartmentID(@Param('id') id: number): Apartment{
-    return this.ApartmentService.getApartmentID(id);
+  getApartmentIDorFavorites(@Param('id') id: string): Apartment[]|Apartment{
+    if(id==="Favorites") {
+      return this.ApartmentService.getFavorites();
+    }
+    else {
+      return this.ApartmentService.getApartmentID(Number(id));
+    }
   }
 
   @Put(':id')
   putMark(@Param() params){
-    this.ApartmentService.addMark(params.id);
+    console.log("Put mark");
+    return this.ApartmentService.addMark(params.id);
   }
 
   @Delete(':id')
   deleteMark(@Param() params) {
-    this.ApartmentService.deleteMark(params.id);
+    console.log("remove mark");
+    return this.ApartmentService.deleteMark(params.id);
   }
 }
