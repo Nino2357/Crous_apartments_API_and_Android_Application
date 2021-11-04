@@ -1,0 +1,26 @@
+[
+  {
+    "id": "354",
+    "nom": "Résidence CEZEAUX - Cité 2",
+    "description": "Située sur le campus des Cézeaux à Aubière",
+    "zone": "Les Cezeaux"
+  },
+  {
+    "id": "359",
+    "nom": "Résidence-MONTLUÇON",
+    "description": "114 chambres (dont 6 PMR) et 108 studios",
+    "zone": "Montluçon"
+  },
+  {
+    "id": "360",
+    "nom": "Résidence PHILIPPE-LEBON",
+    "description": "478 chambres rénovées",
+    "zone": "Clermont-Ferrand"
+  },
+  {
+    "id": "362",
+    "nom": "Résidence AMBOISE",
+    "description": "Située au coeur de Clermont-Ferrand, sur le site de Carnot",
+    "zone": "Clermont-Ferrand"
+  }
+  ]
