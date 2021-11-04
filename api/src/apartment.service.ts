@@ -9,6 +9,7 @@ import { readFile } from 'fs';
 @Injectable()
 export class ApartmentService {
   private tabApartment: Apartment[] = [];
+  private tabFavorites: Apartment[] = [];
 
   async onModuleInit() {
     const file = await promises.readFile('./src/dataset.json');
@@ -34,7 +35,6 @@ export class ApartmentService {
 
   public addApartment(apartment: Apartment) {
     if (this.getApartment(apartment.nom) === undefined) {
-      console.log("test3");
       this.tabApartment.push(apartment);
     }
   }
@@ -49,12 +49,9 @@ export class ApartmentService {
     }
     return undefined;
   }
-
-  // public getBooksOf(author: string): Book[] {
-  //   let tabBookAuthor = this.tabBook.filter(value => value.author === author);
-  //   return tabBookAuthor;
-  // }
-  //
+  public getApartmentID(id: number): Apartment {
+    return this.tabApartment.filter(value => value.id === id)[0];
+  }
   public getAllApartments(): Apartment[] {
     let listApartment: Apartment[] = [];
     let i: number;
@@ -63,18 +60,11 @@ export class ApartmentService {
     }
     return listApartment.sort((a, b) => a.nom.localeCompare(b.nom));
   }
-  //
-  // public getTotalNumberOfBooks(): number {
-  //   return this.tabBook.length;
-  // }
-  //
-  // public getBooksPublishedBefore(aDate: string | Date): Book[] {
-  //   let date = new Date(aDate);
-  //   return this.tabBook.filter(value => value.date.getTime() < date.getTime());
-  // }
-  //
-  // public deleteBook(name: string) {
-  //   let bookD = this.tabBook.find(value => value.title === name);
-  //   this.tabBook = this.tabBook.filter(value => value.title !== name);
-  // }
+  public addMark(id: number){
+     this.tabFavorites.push(this.tabApartment.find(value => value.id === id));
+  }
+  public deleteMark(id: number) {
+    let apartmentD = this.tabApartment.find(value => value.id === id);
+    this.tabFavorites = this.tabFavorites.filter(value => value.id !== id);
+  }
 }

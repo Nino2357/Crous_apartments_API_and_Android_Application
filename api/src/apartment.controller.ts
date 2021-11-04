@@ -5,7 +5,7 @@ import {
   Body,
   Param,
   Query,
-  Delete,
+  Delete, Put,
 } from '@nestjs/common';
 import { ApartmentService } from './apartment.service';
 import { Apartment } from './Apartment';
@@ -18,7 +18,7 @@ export class ApartmentController {
   getAllC(): Apartment[] {
       return this.ApartmentService.getAllApartments();
     }
-  //
+
   @Post()
   addApartmentC(@Body() apartment: Apartment): Apartment {
     this.ApartmentService.addApartment(apartment);
@@ -26,12 +26,17 @@ export class ApartmentController {
   }
 
   @Get(':id')
-  getApartmentC(@Param() params): Apartment | undefined {
-    return this.ApartmentService.getApartment(params.id);
+  getApartmentC(@Param() params){
+    this.ApartmentService.getApartmentID(params.id);
   }
 
-  // @Delete(':id')
-  // deleteBookC(@Param() params) {
-  //   this.ApartmentService.deleteBook(params.id);
-  // }
+  @Put(':id')
+  putMark(@Param() params){
+    this.ApartmentService.addMark(params.id);
+  }
+
+  @Delete(':id')
+  deleteMark(@Param() params) {
+    this.ApartmentService.deleteMark(params.id);
+  }
 }

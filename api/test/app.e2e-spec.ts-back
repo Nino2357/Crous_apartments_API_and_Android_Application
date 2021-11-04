@@ -1,0 +1,67 @@
+import * as request from 'supertest';
+import { Test } from '@nestjs/testing';
+import { INestApplication } from '@nestjs/common';
+import supertest from 'supertest';
+import { ApartmentModule } from '../src/apartment.module';
+
+describe('Apartments API', () => {
+  let app: INestApplication;
+  let httpRequester: supertest.SuperTest<supertest.Test>;
+
+  beforeEach(async () => {
+    const moduleRef = await Test.createTestingModule({
+      imports: [ApartmentModule],
+    }).compile();
+
+    app = moduleRef.createNestApplication();
+    await app.init();
+
+    httpRequester = request(app.getHttpServer());
+  });
+
+  it(`/GET apartments`, async () => {
+    const response = await httpRequester.get('/apartments').expect(200);
+
+    expect(response.body).toEqual(expect.any(Array));
+  });
+
+  it(`/GET apartment by id`, async () => {
+    await httpRequester.post('/apartments').send({
+      id: "359",
+      nom: "Residence",
+      description: "114 chambres (dont 6 PMR) et 108 studios",
+      zone: "Montluçon",
+    });
+
+    const response = await httpRequester
+      .get('/apartments')
+      .query({ id: '359' })
+      .expect(200);
+
+    expect(response.body).toMatchObject([
+      {
+        id: "359",
+        nom: "Residence",
+        description: "114 chambres (dont 6 PMR) et 108 studios",
+        zone: "Montluçon",
+      },
+    ]);
+  });
+  //
+  // it(`/DELETE books/:title`, async () => {
+  //   // First prepare the data by adding a book
+  //   await httpRequester.post('/books').send({
+  //     title: 'Candide',
+  //     author: 'Voltaire',
+  //     date: '1759',
+  //   });
+  //
+  //   // Delete the book
+  //   await httpRequester.delete('/books/Candide').expect(200);
+  //
+  //   // Finally check the book was successfully deleted
+  //   const response = await httpRequester.get('/books');
+  //
+  //   expect(response.body).toEqual([]);
+  // });
+});
