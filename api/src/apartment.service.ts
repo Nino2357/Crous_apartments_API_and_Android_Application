@@ -1,4 +1,4 @@
-import { Injectable, OnModuleInit } from '@nestjs/common';
+import {HttpService, Injectable, OnModuleInit} from '@nestjs/common';
 import { Apartment } from './Apartment';
 import { ApartmentImported } from './ApartmentImported';
 
@@ -7,31 +7,46 @@ import { promises } from 'fs';
 import { readFile } from 'fs';
 
 @Injectable()
-export class ApartmentService {
+export class ApartmentService implements OnModuleInit{
   private tabApartment: Apartment[] = [];
   private tabFavorites: Apartment[] = [];
+  constructor(private httpService:HttpService) {}
 
-  async onModuleInit() {
-    const file = await promises.readFile('./src/dataset.json');
-    let tabFile = JSON.parse(file.toString());
-    this.convertFile(tabFile);
+  onModuleInit(): void{
+    const file = this.httpService
+        .get(
+            'https://data.opendatasoft.com/explore/dataset/fr_crous_logement_france_entiere@mesr/download/?format=json&timezone=Europe/Berlin&lang=fr',
+        )
+        .subscribe((response) => this.adaptInApartment(response.data));
   }
-
-  public convertFile(file: any) {
-    let apartmentI: ApartmentImported;
+  public adaptInApartment(ApartmentI: ApartmentImported[]){
     let tempApartment: Apartment;
-    console.log(file);
-    file.forEach((apartmentI: ApartmentImported) => {
+    ApartmentI.forEach((apartmentI: ApartmentImported) => {
       tempApartment = {
-        id: apartmentI.id,
-        nom: apartmentI.nom,
-        description: apartmentI.description,
-        zone: apartmentI.zone,
+        id: apartmentI.fields.id,
+        nom: apartmentI.fields.title,
+        description: apartmentI.fields.mail,
+        zone: apartmentI.fields.zone,
       };
-
       this.addApartment(tempApartment);
     });
   }
+
+  // public convertFile(file: any) {
+  //   let apartmentI: ApartmentImported;
+  //   let tempApartment: Apartment;
+  //   console.log(file);
+  //   file.forEach((apartmentI: ApartmentImported) => {
+  //     tempApartment = {
+  //       id: apartmentI.id,
+  //       nom: apartmentI.nom,
+  //       description: apartmentI.description,
+  //       zone: apartmentI.zone,
+  //     };
+  //
+  //     this.addApartment(tempApartment);
+  //   });
+  // }
 
   public addApartment(apartment: Apartment) {
     if (this.getApartment(apartment.nom) === undefined) {
