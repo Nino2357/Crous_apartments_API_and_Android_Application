@@ -32,22 +32,6 @@ export class ApartmentService implements OnModuleInit{
     });
   }
 
-  // public convertFile(file: any) {
-  //   let apartmentI: ApartmentImported;
-  //   let tempApartment: Apartment;
-  //   console.log(file);
-  //   file.forEach((apartmentI: ApartmentImported) => {
-  //     tempApartment = {
-  //       id: apartmentI.id,
-  //       nom: apartmentI.nom,
-  //       description: apartmentI.description,
-  //       zone: apartmentI.zone,
-  //     };
-  //
-  //     this.addApartment(tempApartment);
-  //   });
-  // }
-
   public addApartment(apartment: Apartment) {
     if (this.getApartment(apartment.nom) === undefined) {
       this.tabApartment.push(apartment);
