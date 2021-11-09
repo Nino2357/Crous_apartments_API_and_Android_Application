@@ -13,7 +13,7 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class MainActivity : AppCompatActivity(), BookCreator {
+class MainActivity : AppCompatActivity() {
 
     private val TAG = MainActivity::class.java.simpleName
 
@@ -30,10 +30,10 @@ class MainActivity : AppCompatActivity(), BookCreator {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        btnCreateBook = findViewById(R.id.a_main_btn_create_book)
-        btnCreateBook.setOnClickListener {
-            displayCreateBook()
-        }
+//        btnCreateBook = findViewById(R.id.a_main_btn_create_book)
+//        btnCreateBook.setOnClickListener {
+//            displayCreateBook()
+//        }
 
         loadAllBooks()
     }
@@ -60,7 +60,7 @@ class MainActivity : AppCompatActivity(), BookCreator {
     }
 
     private fun displayBookList() {
-        btnCreateBook.visibility = View.VISIBLE
+//        btnCreateBook.visibility = View.VISIBLE
         val fragmentTransaction = supportFragmentManager.beginTransaction()
         val fragment = BookListFragment.newInstance(bookshelf.getAllBooks())
         fragmentTransaction.replace(R.id.a_main_lyt_fragment_container, fragment)
@@ -76,8 +76,7 @@ class MainActivity : AppCompatActivity(), BookCreator {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
-            R.id.main_menu_delete -> {
-                bookshelf.clear()
+            R.id.main_menu_map -> {
                 displayBookList()
                 true
             }
@@ -86,16 +85,16 @@ class MainActivity : AppCompatActivity(), BookCreator {
         }
     }
 
-    private fun displayCreateBook() {
-        btnCreateBook.visibility = View.GONE
-        val fragmentTransaction = supportFragmentManager.beginTransaction()
-        val fragment = CreateBookFragment.newInstance()
-        fragmentTransaction.replace(R.id.a_main_lyt_fragment_container, fragment)
-        fragmentTransaction.commit()
-    }
+//    private fun displayCreateBook() {
+//        btnCreateBook.visibility = View.GONE
+//        val fragmentTransaction = supportFragmentManager.beginTransaction()
+//        val fragment = CreateBookFragment.newInstance()
+//        fragmentTransaction.replace(R.id.a_main_lyt_fragment_container, fragment)
+//        fragmentTransaction.commit()
+//    }
 
-    override fun onBookCreated(book: Apartment) {
-        bookshelf.addBook(book);
-        displayBookList()
-    }
+//    override fun onBookCreated(book: Apartment) {
+//        bookshelf.addBook(book);
+//        displayBookList()
+//    }
 }

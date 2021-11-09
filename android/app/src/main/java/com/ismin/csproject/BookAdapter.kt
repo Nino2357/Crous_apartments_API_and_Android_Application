@@ -12,11 +12,11 @@ class BookAdapter(private val books: ArrayList<Apartment>): RecyclerView.Adapter
     }
 
     override fun onBindViewHolder(holder: BookViewHolder, position: Int) {
-        val (id, nom, description) = books[position]
+        val (id, nom, description,zone) = books[position]
 
-        holder.txvTitle.text = id.toString()
-        holder.txvAuthor.text = nom
-        holder.txvDate.text = description
+        holder.txvTitle.text = nom
+        holder.txvAuthor.text = id.toString()
+        holder.txvDate.text = zone
     }
 
     override fun getItemCount(): Int {

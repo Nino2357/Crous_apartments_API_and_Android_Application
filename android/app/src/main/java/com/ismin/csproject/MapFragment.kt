@@ -11,7 +11,7 @@ import android.widget.Button
 import android.widget.EditText
 import androidx.fragment.app.Fragment
 
-class CreateBookFragment : Fragment() {
+class MapFragment : Fragment() {
 
     private lateinit var bookCreatorListener: BookCreator
     private lateinit var authorEdt: EditText
@@ -29,9 +29,9 @@ class CreateBookFragment : Fragment() {
         titleEdt = rootView.findViewById<EditText>(R.id.f_create_book_edt_title)
         dateEdt = rootView.findViewById<EditText>(R.id.f_create_book_edt_date)
 
-        rootView.findViewById<Button>(R.id.f_create_book_btn_save).setOnClickListener {
-
-        }
+//        rootView.findViewById<Button>(R.id.f_create_book_btn_save).setOnClickListener {
+//
+//        }
 
         ObjectAnimator.ofFloat(
             rootView.findViewById(R.id.f_create_book_lyt_form_container),
@@ -58,16 +58,10 @@ class CreateBookFragment : Fragment() {
         }
     }
 
-//    private fun saveBook() {
-//        val zone = authorEdt.text.toString()
-//        val nom = titleEdt.text.toString()
-//        val description = dateEdt.text.toString()
-//        val book = Apartment(zone, nom, description)
-//        bookCreatorListener.onBookCreated(book)
-//    }
+
 
     companion object {
         @JvmStatic
-        fun newInstance() = CreateBookFragment()
+        fun newInstance() = MapFragment()
     }
 }
