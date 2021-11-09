@@ -13,7 +13,7 @@ import androidx.fragment.app.Fragment
 
 class MapFragment : Fragment() {
 
-    private lateinit var bookCreatorListener: BookCreator
+    private lateinit var apartmentCreatorListener: ApartmentCreator
     private lateinit var authorEdt: EditText
     private lateinit var titleEdt: EditText
     private lateinit var dateEdt: EditText
@@ -51,8 +51,8 @@ class MapFragment : Fragment() {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        if (context is BookCreator) {
-            bookCreatorListener = context
+        if (context is ApartmentCreator) {
+            apartmentCreatorListener = context
         } else {
             throw RuntimeException("$context must implement MyActivityCallback")
         }

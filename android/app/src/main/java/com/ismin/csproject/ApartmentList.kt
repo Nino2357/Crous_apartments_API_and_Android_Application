@@ -1,6 +1,6 @@
 package com.ismin.csproject
 
-class Bookshelf {
+class ApartmentList {
 
     private val storage = HashMap<String, Apartment>()
 
@@ -12,7 +12,7 @@ class Bookshelf {
         return storage[title]
     }
 
-    fun getAllBooks(): ArrayList<Apartment> {
+    fun getAllApartments(): ArrayList<Apartment> {
         return ArrayList(storage.values.sortedBy { it.id })
     }
 

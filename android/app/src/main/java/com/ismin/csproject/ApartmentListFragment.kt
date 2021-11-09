@@ -8,18 +8,18 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
-private const val ARG_BOOKS = "books"
+private const val ARG_APARTMENTS = "apartments"
 
-class BookListFragment : Fragment() {
-    private lateinit var books: ArrayList<Apartment>
-    private lateinit var adapter : BookAdapter
+class ApartmentListFragment : Fragment() {
+    private lateinit var apartments: ArrayList<Apartment>
+    private lateinit var adapter : ApartmentAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val argBooks = requireArguments().getSerializable(ARG_BOOKS) as ArrayList<Apartment>?
-        books = argBooks ?: ArrayList()
-        adapter = BookAdapter(books)
+        val argApartments = requireArguments().getSerializable(ARG_APARTMENTS) as ArrayList<Apartment>?
+        apartments = argApartments ?: ArrayList()
+        adapter = ApartmentAdapter(apartments)
 
     }
 
@@ -30,19 +30,19 @@ class BookListFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_book_list, container, false)
 
-        val rcvBooks = view.findViewById<RecyclerView>(R.id.f_book_list_rcv_books)
-        rcvBooks.layoutManager = LinearLayoutManager(context)
-        rcvBooks.adapter = adapter
+        val rcvApartments = view.findViewById<RecyclerView>(R.id.f_book_list_rcv_books)
+        rcvApartments.layoutManager = LinearLayoutManager(context)
+        rcvApartments.adapter = adapter
 
         return view;
     }
 
     companion object {
         @JvmStatic
-        fun newInstance(books: ArrayList<Apartment>) =
-            BookListFragment().apply {
+        fun newInstance(apartments: ArrayList<Apartment>) =
+            ApartmentListFragment().apply {
                 arguments = Bundle().apply {
-                    putSerializable(ARG_BOOKS, books)
+                    putSerializable(ARG_APARTMENTS, apartments)
                 }
             }
     }

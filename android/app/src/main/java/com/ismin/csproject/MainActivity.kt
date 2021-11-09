@@ -17,14 +17,14 @@ class MainActivity : AppCompatActivity() {
 
     private val TAG = MainActivity::class.java.simpleName
 
-    private val bookshelf = Bookshelf()
+    private val apartmentList = ApartmentList()
     private lateinit var btnCreateBook: FloatingActionButton
 
     val retrofit = Retrofit.Builder()
         .addConverterFactory(GsonConverterFactory.create())
         .baseUrl("https://crous-project-bjy-ndn.cleverapps.io/")
         .build()
-    val bookService = retrofit.create(BookService::class.java)
+    val bookService = retrofit.create(ApartmentService::class.java)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,7 +39,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun loadAllBooks() {
-        bookService.getAllBooks().enqueue(object : Callback<List<Apartment>> {
+        bookService.getAllApartments().enqueue(object : Callback<List<Apartment>> {
             override fun onResponse(
                 call: Call<List<Apartment>>,
                 response: Response<List<Apartment>>
@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity() {
                 val allBooks: List<Apartment>? = response.body()
 
                 allBooks?.forEach {
-                    bookshelf.addBook(it)
+                    apartmentList.addBook(it)
                 }
                 displayBookList();
             }
@@ -62,7 +62,7 @@ class MainActivity : AppCompatActivity() {
     private fun displayBookList() {
 //        btnCreateBook.visibility = View.VISIBLE
         val fragmentTransaction = supportFragmentManager.beginTransaction()
-        val fragment = BookListFragment.newInstance(bookshelf.getAllBooks())
+        val fragment = ApartmentListFragment.newInstance(apartmentList.getAllApartments())
         fragmentTransaction.replace(R.id.a_main_lyt_fragment_container, fragment)
         fragmentTransaction.commit()
     }

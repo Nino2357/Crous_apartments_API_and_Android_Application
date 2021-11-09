@@ -3,8 +3,8 @@ package com.ismin.csproject
 import retrofit2.Call
 import retrofit2.http.GET
 
-interface BookService {
+interface ApartmentService {
 
     @GET("apartments")
-    fun getAllBooks(): Call<List<Apartment>>
+    fun getAllApartments(): Call<List<Apartment>>
 }
