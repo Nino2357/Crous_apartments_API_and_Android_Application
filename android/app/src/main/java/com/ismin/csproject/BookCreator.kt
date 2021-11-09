@@ -1,5 +1,5 @@
 package com.ismin.csproject
 
 interface BookCreator {
-    fun onBookCreated(book: Book)
+    fun onBookCreated(book: Apartment)
 }

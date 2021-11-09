@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity(), BookCreator {
 
     val retrofit = Retrofit.Builder()
         .addConverterFactory(GsonConverterFactory.create())
-        .baseUrl("https://bookshelf-ndn.cleverapps.io/")
+        .baseUrl("https://crous-project-bjy-ndn.cleverapps.io/")
         .build()
     val bookService = retrofit.create(BookService::class.java)
 
@@ -39,12 +39,12 @@ class MainActivity : AppCompatActivity(), BookCreator {
     }
 
     private fun loadAllBooks() {
-        bookService.getAllBooks().enqueue(object : Callback<List<Book>> {
+        bookService.getAllBooks().enqueue(object : Callback<List<Apartment>> {
             override fun onResponse(
-                call: Call<List<Book>>,
-                response: Response<List<Book>>
+                call: Call<List<Apartment>>,
+                response: Response<List<Apartment>>
             ) {
-                val allBooks: List<Book>? = response.body()
+                val allBooks: List<Apartment>? = response.body()
 
                 allBooks?.forEach {
                     bookshelf.addBook(it)
@@ -52,7 +52,7 @@ class MainActivity : AppCompatActivity(), BookCreator {
                 displayBookList();
             }
 
-            override fun onFailure(call: Call<List<Book>>, t: Throwable) {
+            override fun onFailure(call: Call<List<Apartment>>, t: Throwable) {
                 Toast.makeText(this@MainActivity, "Error when trying to fetch books" + t.localizedMessage, Toast.LENGTH_LONG).show()
             }
         }
@@ -94,7 +94,7 @@ class MainActivity : AppCompatActivity(), BookCreator {
         fragmentTransaction.commit()
     }
 
-    override fun onBookCreated(book: Book) {
+    override fun onBookCreated(book: Apartment) {
         bookshelf.addBook(book);
         displayBookList()
     }

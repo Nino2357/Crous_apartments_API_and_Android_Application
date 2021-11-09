@@ -5,6 +5,6 @@ import retrofit2.http.GET
 
 interface BookService {
 
-    @GET("books")
-    fun getAllBooks(): Call<List<Book>>
+    @GET("apartments")
+    fun getAllBooks(): Call<List<Apartment>>
 }

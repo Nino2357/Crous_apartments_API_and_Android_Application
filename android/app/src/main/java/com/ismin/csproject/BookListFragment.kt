@@ -11,13 +11,13 @@ import androidx.recyclerview.widget.RecyclerView
 private const val ARG_BOOKS = "books"
 
 class BookListFragment : Fragment() {
-    private lateinit var books: ArrayList<Book>
+    private lateinit var books: ArrayList<Apartment>
     private lateinit var adapter : BookAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val argBooks = requireArguments().getSerializable(ARG_BOOKS) as ArrayList<Book>?
+        val argBooks = requireArguments().getSerializable(ARG_BOOKS) as ArrayList<Apartment>?
         books = argBooks ?: ArrayList()
         adapter = BookAdapter(books)
 
@@ -39,7 +39,7 @@ class BookListFragment : Fragment() {
 
     companion object {
         @JvmStatic
-        fun newInstance(books: ArrayList<Book>) =
+        fun newInstance(books: ArrayList<Apartment>) =
             BookListFragment().apply {
                 arguments = Bundle().apply {
                     putSerializable(ARG_BOOKS, books)

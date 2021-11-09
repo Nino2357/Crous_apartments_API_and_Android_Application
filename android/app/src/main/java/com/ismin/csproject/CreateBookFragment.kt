@@ -30,7 +30,7 @@ class CreateBookFragment : Fragment() {
         dateEdt = rootView.findViewById<EditText>(R.id.f_create_book_edt_date)
 
         rootView.findViewById<Button>(R.id.f_create_book_btn_save).setOnClickListener {
-            saveBook()
+
         }
 
         ObjectAnimator.ofFloat(
@@ -58,13 +58,13 @@ class CreateBookFragment : Fragment() {
         }
     }
 
-    private fun saveBook() {
-        val author = authorEdt.text.toString()
-        val title = titleEdt.text.toString()
-        val date = dateEdt.text.toString()
-        val book = Book(title, author, date)
-        bookCreatorListener.onBookCreated(book)
-    }
+//    private fun saveBook() {
+//        val zone = authorEdt.text.toString()
+//        val nom = titleEdt.text.toString()
+//        val description = dateEdt.text.toString()
+//        val book = Apartment(zone, nom, description)
+//        bookCreatorListener.onBookCreated(book)
+//    }
 
     companion object {
         @JvmStatic

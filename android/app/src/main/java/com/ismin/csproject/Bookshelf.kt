@@ -2,25 +2,25 @@ package com.ismin.csproject
 
 class Bookshelf {
 
-    private val storage = HashMap<String, Book>()
+    private val storage = HashMap<String, Apartment>()
 
-    fun addBook(aBook: Book) {
-        storage[aBook.title] = aBook
+    fun addBook(aBook: Apartment) {
+        storage[aBook.nom] = aBook
     }
 
-    fun getBook(title: String): Book? {
+    fun getBook(title: String): Apartment? {
         return storage[title]
     }
 
-    fun getAllBooks(): ArrayList<Book> {
-        return ArrayList(storage.values.sortedBy { it.title })
+    fun getAllBooks(): ArrayList<Apartment> {
+        return ArrayList(storage.values.sortedBy { it.id })
     }
 
-    fun getBooksOf(author: String): List<Book> {
+    fun getBooksOf(author: String): List<Apartment> {
         return storage
-            .filterValues { it.author == author }
+            .filterValues { it.nom == author }
             .values
-            .sortedBy { it.title }
+            .sortedBy { it.id }
             .toList();
     }
 
