@@ -5,10 +5,11 @@ import {
   Body,
   Param,
   Query,
-  Delete, Put,
+  Delete, Put, Patch,
 } from '@nestjs/common';
 import { ApartmentService } from './apartment.service';
 import { Apartment } from './Apartment';
+import {Application} from "express";
 
 @Controller('/apartments')
 export class ApartmentController {
@@ -25,8 +26,6 @@ export class ApartmentController {
     return apartment;
   }
 
-
-
   @Get(':id')
   getApartmentIDorFavorites(@Param('id') id: string): Apartment[]|Apartment{
     if(id==="Favorites") {
@@ -38,14 +37,21 @@ export class ApartmentController {
   }
 
   @Put(':id')
-  putMark(@Param() params){
-    console.log("Put mark");
-    return this.ApartmentService.addMark(params.id);
+  putMark(@Param('id') id: string, @Body() favorites: boolean): Apartment|string{
+    console.log(id);
+    console.log(favorites["favorites"]);
+    if(favorites["favorites"]=="true") {
+      return this.ApartmentService.addMark(Number(id));
+    }
+    else {
+      return "nothing append"
+    }
   }
 
   @Delete(':id')
-  deleteMark(@Param() params) {
+  deleteMark(@Param('id') id: string): Apartment {
     console.log("remove mark");
-    return this.ApartmentService.deleteMark(params.id);
+    console.log(id);
+    return this.ApartmentService.deleteMark(Number(id));
   }
 }

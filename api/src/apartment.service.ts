@@ -68,13 +68,13 @@ export class ApartmentService implements OnModuleInit{
     return listApartment.sort((a, b) => a.nom.localeCompare(b.nom));
   }
   public addMark(id: number): Apartment{
-    let newFavorite: Apartment = this.tabApartment.find(value => value.id === id);
-    this.tabFavorites.push(newFavorite);
-    return newFavorite;
+    this.tabFavorites.push(this.getApartmentID(id));
+    return this.getApartmentID(id);
   }
-  public deleteMark(id: number): Apartment {
-    let apartmentD = this.tabApartment.find(value => value.id === id);
-    this.tabFavorites = this.tabFavorites.filter(value => value.id !== id);
-    return apartmentD;
+  public deleteMark(idToDelete: number): Apartment {
+    this.tabFavorites = this.tabFavorites.filter(value => value.id !== idToDelete);
+    console.log(this.tabFavorites);
+    return this.getApartmentID(idToDelete);
   }
 }
+
