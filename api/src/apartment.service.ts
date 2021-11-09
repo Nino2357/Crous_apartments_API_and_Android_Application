@@ -5,11 +5,13 @@ import { ApartmentImported } from './ApartmentImported';
 import { buffer } from 'rxjs/operators';
 import { promises } from 'fs';
 import { readFile } from 'fs';
+import {ApartmentLessInfo} from "./ApartmentLessInfo";
 
 @Injectable()
 export class ApartmentService implements OnModuleInit{
   private tabApartment: Apartment[] = [];
   private tabFavorites: Apartment[] = [];
+  private tabApartmentLessInfo: ApartmentLessInfo[] = [];
   constructor(private httpService:HttpService) {}
 
   onModuleInit(): void{
@@ -27,6 +29,11 @@ export class ApartmentService implements OnModuleInit{
         nom: apartmentI.fields.title,
         description: apartmentI.fields.mail,
         zone: apartmentI.fields.zone,
+        coordX: apartmentI.fields.geocalisation[0],
+        coordY: apartmentI.fields.geocalisation[1],
+        phone: apartmentI.fields.phone,
+        address: apartmentI.fields.address,
+        photo: apartmentI.fields.photo
       };
       this.addApartment(tempApartment);
     });
@@ -51,6 +58,7 @@ export class ApartmentService implements OnModuleInit{
   public getApartmentID(id: number): Apartment {
     return this.tabApartment.filter(value => value.id === id)[0];
   }
+
   public getAllApartments(): Apartment[] {
     let listApartment: Apartment[] = [];
     let i: number;

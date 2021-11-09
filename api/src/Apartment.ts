@@ -3,4 +3,9 @@ export interface Apartment {
     nom: string;
     description: string;
     zone: string;
+    coordX: number;
+    coordY: number;
+    phone: string;
+    address: string;
+    photo: string;
 }

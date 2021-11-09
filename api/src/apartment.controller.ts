@@ -10,6 +10,7 @@ import {
 import { ApartmentService } from './apartment.service';
 import { Apartment } from './Apartment';
 import {Application} from "express";
+import {ApartmentLessInfo} from "./ApartmentLessInfo";
 
 @Controller('/apartments')
 export class ApartmentController {
@@ -27,7 +28,7 @@ export class ApartmentController {
   }
 
   @Get(':id')
-  getApartmentIDorFavorites(@Param('id') id: string): Apartment[]|Apartment{
+  getApartmentIDorFavorites(@Param('id') id: string): Apartment[]|ApartmentLessInfo{
     if(id==="Favorites") {
       return this.ApartmentService.getFavorites();
     }
@@ -35,6 +36,7 @@ export class ApartmentController {
       return this.ApartmentService.getApartmentID(Number(id));
     }
   }
+
 
   @Put(':id')
   putMark(@Param('id') id: string, @Body() favorites: boolean): Apartment|string{
