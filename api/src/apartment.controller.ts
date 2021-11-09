@@ -28,7 +28,7 @@ export class ApartmentController {
   }
 
   @Get(':id')
-  getApartmentIDorFavorites(@Param('id') id: string): Apartment[]|ApartmentLessInfo{
+  getApartmentIDorFavorites(@Param('id') id: string): Apartment[]|Apartment{
     if(id==="Favorites") {
       return this.ApartmentService.getFavorites();
     }

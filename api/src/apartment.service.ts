@@ -55,8 +55,8 @@ export class ApartmentService implements OnModuleInit{
     }
     return undefined;
   }
-  public getApartmentID(id: number): Apartment {
-    return this.tabApartment.filter(value => value.id === id)[0];
+  public getApartmentID(id: number): Apartment{
+      return this.tabApartment.filter(value => value.id === id)[0];
   }
 
   public getAllApartments(): Apartment[] {
