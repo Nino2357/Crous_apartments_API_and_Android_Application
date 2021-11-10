@@ -25,18 +25,16 @@ class InfoFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_info, container, false)
         var idInfos = view.findViewById<TextView>(R.id.info)
         var idInfosTitre = view.findViewById<TextView>(R.id.info_titre)
-        var idLien = view.findViewById<TextView>(R.id.lien)
 
-        var idInfos2 = view.findViewById<TextView>(R.id.info2)
 
         val titre = "Crous Application"
         val text = "This project provides information on the apartments\n" +
                 "offered to students by the Crous in France.\n" +
                 "\n" +
                 "This project is divided into 2 parts:\n" +
-                "- an API part accessible at the following link :\n"
-        val lien = " https://crous-project-bjy-ndn.cleverapps.io/apartments\n"
-        val text2 = "- an android application part\n" +
+                "- an API part accessible at the following link :\n" +
+                " https://crous-project-bjy-ndn.cleverapps.io/apartments\n" +
+                "- an android application part\n" +
                 "\n" +
                 "This application allows :\n" +
                 "- to display the list of apartments\n" +
@@ -45,8 +43,7 @@ class InfoFragment : Fragment() {
                 "- to mark apartment as favourite "
         idInfos.text=text
         idInfosTitre.text=titre
-        idLien.text=lien
-        idInfos2.text=text2
+
 
         return view;
     }
