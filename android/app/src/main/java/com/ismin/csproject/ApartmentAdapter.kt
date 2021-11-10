@@ -3,8 +3,6 @@ package com.ismin.csproject
 import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
-import androidx.core.content.ContextCompat
-
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
