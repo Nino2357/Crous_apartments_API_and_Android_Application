@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 class ApartmentAdapter(private val apartments: ArrayList<Apartment>): RecyclerView.Adapter<ApartmentViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ApartmentViewHolder {
-        val row = LayoutInflater.from(parent.context).inflate(R.layout.row_book, parent, false)
+        val row = LayoutInflater.from(parent.context).inflate(R.layout.`row_apartment`, parent, false)
         return ApartmentViewHolder(row)
     }
 
