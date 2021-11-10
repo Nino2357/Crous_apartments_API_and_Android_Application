@@ -108,22 +108,9 @@ class MainActivity : AppCompatActivity(),  OnMapReadyCallback {
     private lateinit var mMap: GoogleMap
 
     override fun onMapReady(gmap: GoogleMap) {
-//        mMap = googleMap
-//
-//        // Add a marker in Sydney and move the camera
-//        val sydney = LatLng(-34.0, 151.0)
-//        mMap.addMarker(MarkerOptions()
-//            .position(sydney)
-//            .title("Marker in Sydney"))
-//        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
         gmap.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(46.227638, 2.213749), 6f))
-
-        // Initialize the manager with the context and the map.
-        // (Activity extends context, so we can pass 'this' in the constructor.)
         clusterManager = ClusterManager(this, gmap)
 
-        // Point the map's listeners at the listeners implemented by the cluster
-        // manager.
         gmap.setOnCameraIdleListener(clusterManager)
         gmap.setOnMarkerClickListener(clusterManager)
 
@@ -131,8 +118,7 @@ class MainActivity : AppCompatActivity(),  OnMapReadyCallback {
     }
 
     val supportMapFragment: SupportMapFragment = SupportMapFragment.newInstance()
-//    private lateinit var clusterManager: ClusterManager<Point>
-//
+
     private fun displayMap() {
         val fragmentTransaction = supportFragmentManager.beginTransaction()
         supportMapFragment.getMapAsync(this)
