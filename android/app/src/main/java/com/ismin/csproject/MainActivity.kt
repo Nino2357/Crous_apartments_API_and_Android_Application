@@ -25,6 +25,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 class MainActivity : AppCompatActivity(),  OnMapReadyCallback {
 
     private val TAG = MainActivity::class.java.simpleName
+    private lateinit var clusterManager: ClusterManager<Point>
 
     private val apartmentList = ApartmentList()
 
@@ -106,15 +107,27 @@ class MainActivity : AppCompatActivity(),  OnMapReadyCallback {
 
     private lateinit var mMap: GoogleMap
 
-    override fun onMapReady(googleMap: GoogleMap) {
-        mMap = googleMap
+    override fun onMapReady(gmap: GoogleMap) {
+//        mMap = googleMap
+//
+//        // Add a marker in Sydney and move the camera
+//        val sydney = LatLng(-34.0, 151.0)
+//        mMap.addMarker(MarkerOptions()
+//            .position(sydney)
+//            .title("Marker in Sydney"))
+//        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
+        gmap.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(46.227638, 2.213749), 6f))
 
-        // Add a marker in Sydney and move the camera
-        val sydney = LatLng(-34.0, 151.0)
-        mMap.addMarker(MarkerOptions()
-            .position(sydney)
-            .title("Marker in Sydney"))
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
+        // Initialize the manager with the context and the map.
+        // (Activity extends context, so we can pass 'this' in the constructor.)
+        clusterManager = ClusterManager(this, gmap)
+
+        // Point the map's listeners at the listeners implemented by the cluster
+        // manager.
+        gmap.setOnCameraIdleListener(clusterManager)
+        gmap.setOnMarkerClickListener(clusterManager)
+
+        addAllPoint()
     }
 
     val supportMapFragment: SupportMapFragment = SupportMapFragment.newInstance()
@@ -125,5 +138,40 @@ class MainActivity : AppCompatActivity(),  OnMapReadyCallback {
         supportMapFragment.getMapAsync(this)
         fragmentTransaction.replace(R.id.a_main_lyt_fragment_container, supportMapFragment)
         fragmentTransaction.commit()
+    }
+    inner class Point(
+        lat: Double,
+        lng: Double,
+        title: String,
+        snippet: String
+    ) : ClusterItem {
+
+        private val position: LatLng
+        private val title: String
+        private val snippet: String
+
+        override fun getPosition(): LatLng {
+            return position
+        }
+
+        override fun getTitle(): String? {
+            return title
+        }
+        override fun getSnippet(): String? {
+            return snippet
+        }
+        init {
+            position = LatLng(lat, lng)
+            this.title = title
+            this.snippet = snippet
+        }
+    }
+    private fun addAllPoint() {
+        for (apartment in apartmentList.getAllApartments()) {
+            addPoint(apartment.coordX,apartment.coordY,apartment.nom,apartment.zone)
+        }
+    }
+    private fun addPoint(lat: Double,lng: Double,title: String, snippet: String) {
+        clusterManager.addItem(Point(lat, lng, title, snippet))
     }
 }
