@@ -8,13 +8,24 @@
 
 
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="113dp"
-        android:layout_height="40dp"
+        android:id="@+id/NomAppart"
+        android:layout_width="375dp"
+        android:layout_height="85dp"
         android:text="TextView"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.073" />
+
+    <TextView
+        android:id="@+id/DescAppart"
+        android:layout_width="0dp"
+        android:layout_height="88dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="@+id/NomAppart"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/NomAppart"
+        app:layout_constraintTop_toBottomOf="@+id/NomAppart" />
 </androidx.constraintlayout.widget.ConstraintLayout>

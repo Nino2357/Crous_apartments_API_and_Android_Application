@@ -15,11 +15,13 @@ class ApartmentDetails : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_apartment_details)
-        var Id = findViewById<TextView>(R.id.textView)
+        var IdTitre = findViewById<TextView>(R.id.NomAppart)
+        var IdDesc = findViewById<TextView>(R.id.DescAppart)
 
         val actionBar: ActionBar?=supportActionBar
         var intent=intent
         val dTitre=intent.getStringExtra("iNom")
+        val dDesc=intent.getStringExtra("iDesc")
 
 
         if (actionBar != null) {
@@ -30,8 +32,8 @@ class ApartmentDetails : AppCompatActivity() {
         }
 
         //Picasso.get().load(dImage).into(txvImage);
-        Id.text=dTitre
-        //txvPeriode.text=dPeriode
+        IdTitre.text=dTitre
+        IdDesc.text=dDesc
 
     }
 

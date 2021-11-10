@@ -31,7 +31,7 @@ class ApartmentAdapter(private val apartments: ArrayList<Apartment>): RecyclerVi
         holder.itemView.setOnClickListener{
             val intent= Intent(context,ApartmentDetails::class.java)
             intent.putExtra("iNom",nom)
-            //intent.putExtra("iImage",httpsImages)
+            intent.putExtra("iDesc",description)
             //intent.putExtra("iLegende",legende)
             //intent.putExtra("iPeriode",periode)
 
