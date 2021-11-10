@@ -1,10 +1,11 @@
 package com.ismin.csproject
 
 import android.os.Bundle
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
-//import com.squareup.picasso.Picasso
+import com.squareup.picasso.Picasso
 
 class ApartmentDetails : AppCompatActivity() {
 
@@ -38,9 +39,10 @@ class ApartmentDetails : AppCompatActivity() {
         idAddress.text=dAddress
 
 
-        //val imageView: ImageView = findViewById(R.id.imageView)
-        //val url = "https://cdn.pixabay.com/photo/2018/01/14/23/12/nature-3082832__340.jpg"
-        //Picasso.with(this).load(url).into(imageView)
+        val imageView: ImageView = findViewById(R.id.imageView)
+        val url = "https://cdn.pixabay.com/photo/2018/01/14/23/12/nature-3082832__340.jpg"
+        Picasso.get().load(url).into(imageView);
+
     }
 
     override fun onSupportNavigateUp(): Boolean {
