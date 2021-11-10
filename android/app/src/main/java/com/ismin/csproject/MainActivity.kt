@@ -30,10 +30,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-//        btnCreateBook = findViewById(R.id.a_main_btn_create_book)
-//        btnCreateBook.setOnClickListener {
-//            displayCreateBook()
-//        }
+/*        btnCreateBook = findViewById(R.id.a_main_btn_create_book)
+        apartmentList.setOnClickListener {
+            displayCreateBook()
+        }*/
 
         loadAllBooks()
     }
@@ -84,17 +84,16 @@ class MainActivity : AppCompatActivity() {
             else -> super.onOptionsItemSelected(item)
         }
     }
+/*
+   private fun displayCreateBook() {
+        btnCreateBook.visibility = View.GONE
+        val fragmentTransaction = supportFragmentManager.beginTransaction()
+        val fragment = CreateBookFragment.newInstance()
+       fragmentTransaction.replace(R.id.a_main_lyt_fragment_container, fragment)
+        fragmentTransaction.commit()
+    }
 
-//    private fun displayCreateBook() {
-//        btnCreateBook.visibility = View.GONE
-//        val fragmentTransaction = supportFragmentManager.beginTransaction()
-//        val fragment = CreateBookFragment.newInstance()
-//        fragmentTransaction.replace(R.id.a_main_lyt_fragment_container, fragment)
-//        fragmentTransaction.commit()
-//    }
-
-//    override fun onBookCreated(book: Apartment) {
-//        bookshelf.addBook(book);
-//        displayBookList()
-//    }
-}
+    override fun onBookCreated(book: Apartment) {
+        bookshelf.addBook(book);
+        displayBookList()*/
+    }
