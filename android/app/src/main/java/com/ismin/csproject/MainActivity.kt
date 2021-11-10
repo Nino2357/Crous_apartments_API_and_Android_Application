@@ -30,11 +30,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-//        btnCreateBook = findViewById(R.id.a_main_btn_create_book)
-//        btnCreateBook.setOnClickListener {
-//            displayCreateBook()
-//        }
-
         loadAllBooks()
     }
 
@@ -49,7 +44,7 @@ class MainActivity : AppCompatActivity() {
                 allBooks?.forEach {
                     apartmentList.addBook(it)
                 }
-                displayBookList();
+                displayApartmentList();
             }
 
             override fun onFailure(call: Call<List<Apartment>>, t: Throwable) {
@@ -59,13 +54,19 @@ class MainActivity : AppCompatActivity() {
         )
     }
 
-    private fun displayBookList() {
-//        btnCreateBook.visibility = View.VISIBLE
+    private fun displayApartmentList() {
         val fragmentTransaction = supportFragmentManager.beginTransaction()
         val fragment = ApartmentListFragment.newInstance(apartmentList.getAllApartments())
         fragmentTransaction.replace(R.id.a_main_lyt_fragment_container, fragment)
         fragmentTransaction.commit()
     }
+
+//    private fun displayInfo() {
+//        val fragmentTransaction = supportFragmentManager.beginTransaction()
+//        val fragment = InfoFragment.newInstance()
+//        fragmentTransaction.replace(R.id.a_main_lyt_fragment_container, fragment)
+//        fragmentTransaction.commit()
+//    }
 
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -76,25 +77,19 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
-            R.id.main_menu_map -> {
-                displayBookList()
+            R.id.main_menu_list -> {
+                displayApartmentList()
                 true
             }
-            // If we got here, the user's action was not recognized.
+            R.id.main_menu_map -> {
+                displayApartmentList()
+                true
+            }
+            R.id.main_menu_info -> {
+                displayApartmentList()
+                true
+            }
             else -> super.onOptionsItemSelected(item)
         }
     }
-
-//    private fun displayCreateBook() {
-//        btnCreateBook.visibility = View.GONE
-//        val fragmentTransaction = supportFragmentManager.beginTransaction()
-//        val fragment = CreateBookFragment.newInstance()
-//        fragmentTransaction.replace(R.id.a_main_lyt_fragment_container, fragment)
-//        fragmentTransaction.commit()
-//    }
-
-//    override fun onBookCreated(book: Apartment) {
-//        bookshelf.addBook(book);
-//        displayBookList()
-//    }
 }
