@@ -61,12 +61,12 @@ class MainActivity : AppCompatActivity() {
         fragmentTransaction.commit()
     }
 
-//    private fun displayInfo() {
-//        val fragmentTransaction = supportFragmentManager.beginTransaction()
-//        val fragment = InfoFragment.newInstance()
-//        fragmentTransaction.replace(R.id.a_main_lyt_fragment_container, fragment)
-//        fragmentTransaction.commit()
-//    }
+    private fun displayInfo() {
+        val fragmentTransaction = supportFragmentManager.beginTransaction()
+        val fragment = InfoFragment.newInstance("test")
+        fragmentTransaction.replace(R.id.a_main_lyt_fragment_container, fragment)
+        fragmentTransaction.commit()
+    }
 
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -86,7 +86,7 @@ class MainActivity : AppCompatActivity() {
                 true
             }
             R.id.main_menu_info -> {
-                displayApartmentList()
+                displayInfo()
                 true
             }
             else -> super.onOptionsItemSelected(item)
