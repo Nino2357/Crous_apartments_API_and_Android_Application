@@ -41,7 +41,8 @@ class InfoFragment : Fragment() {
                 "This application allows :\n" +
                 "- to display the list of apartments\n" +
                 "- to get the details of apartmens\n" +
-                "- to see them on a map"
+                "- to see them on a map\n" +
+                "- to mark apartment as favourite "
         idInfos.text=text
         idInfosTitre.text=titre
         idLien.text=lien

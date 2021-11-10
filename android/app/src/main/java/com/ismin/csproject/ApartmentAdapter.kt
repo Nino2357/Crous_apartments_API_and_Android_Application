@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 
 class ApartmentAdapter(private val apartments: ArrayList<Apartment>): RecyclerView.Adapter<ApartmentViewHolder>() {
@@ -18,12 +19,15 @@ class ApartmentAdapter(private val apartments: ArrayList<Apartment>): RecyclerVi
     }
 
     override fun onBindViewHolder(holder: ApartmentViewHolder, position: Int) {
-        val (id, nom, description,zone,coordX,coordY,phone,address, photo:String?) = apartments[position]
+        val (id, nom, description,zone,coordX,coordY,phone,address, photo:String?,favori:Boolean?) = apartments[position]
         holder.txvName.text = nom
         holder.txvId.text = id.toString()
         holder.txvZone.text = zone
 
 
+        holder.buttonFave.setOnClickListener {
+                favourite(holder,favori)
+        }
 
 
         holder.itemView.setOnClickListener{
@@ -51,6 +55,18 @@ class ApartmentAdapter(private val apartments: ArrayList<Apartment>): RecyclerVi
         return apartments.size
     }
 
+    fun favourite(holder: ApartmentViewHolder,favori:Boolean){
+        var icon:Int
+        if(favori) {
+            icon=android.R.drawable.star_off
+        }
+        else {
+            icon=android.R.drawable.star_on
+        }
+        holder.buttonFave.setImageDrawable(
+            ContextCompat.getDrawable(context, icon));
+
+    }
     fun refreshData(newApartments: ArrayList<Apartment>) {
         apartments.clear()
         apartments.addAll(newApartments)

@@ -1,10 +1,8 @@
 package com.ismin.csproject
 
-import android.graphics.Point
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -12,10 +10,8 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.MarkerOptions
 import com.google.maps.android.clustering.ClusterItem
 import com.google.maps.android.clustering.ClusterManager
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -33,7 +29,7 @@ class MainActivity : AppCompatActivity(),  OnMapReadyCallback {
         .addConverterFactory(GsonConverterFactory.create())
         .baseUrl("https://crous-project-bjy-ndn.cleverapps.io/")
         .build()
-    val bookService = retrofit.create(ApartmentService::class.java)
+    val aptService = retrofit.create(ApartmentService::class.java)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,7 +39,7 @@ class MainActivity : AppCompatActivity(),  OnMapReadyCallback {
     }
 
     private fun loadAllApartments() {
-        bookService.getAllApartments().enqueue(object : Callback<List<Apartment>> {
+        aptService.getAllApartments().enqueue(object : Callback<List<Apartment>> {
             override fun onResponse(
                 call: Call<List<Apartment>>,
                 response: Response<List<Apartment>>

@@ -10,10 +10,11 @@
         android:id="@+id/r_apartment_txv_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="casual"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:fontFamily="sans-serif-thin"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display2"
         android:textSize="24sp"
         android:textStyle="bold"
+        android:typeface="sans"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -24,13 +25,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:layout_marginRight="2dp"
+        android:layout_marginEnd="56dp"
         android:fontFamily="sans-serif-medium"
         android:textAppearance="@style/TextAppearance.AppCompat.Small"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/r_apartment_txv_name"
+        app:layout_constraintVertical_bias="0.0"
         tools:text="id" />
 
     <TextView
@@ -44,5 +46,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/r_apartment_txv_name"
         tools:text="Zone" />
+
+    <ImageButton
+        android:id="@+id/r_apartment_txv_favori"
+        android:layout_width="35dp"
+        android:layout_height="39dp"
+        android:background="@android:drawable/star_off"
+        app:layout_constraintBottom_toBottomOf="@+id/r_apartment_txv_id"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.609"
+        app:layout_constraintStart_toEndOf="@+id/r_apartment_txv_id"
+        app:layout_constraintTop_toTopOf="@+id/r_apartment_txv_id"
+        app:layout_constraintVertical_bias="0.428"
+        app:srcCompat="@android:drawable/star_off" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
