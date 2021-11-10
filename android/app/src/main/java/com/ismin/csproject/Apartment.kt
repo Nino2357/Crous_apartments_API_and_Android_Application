@@ -11,5 +11,5 @@ data class Apartment(
     val coordY: Double,
     val phone: String,
     val address: String,
-    val photo: String,
+    val photo: String?,
 ): Serializable {}

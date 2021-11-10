@@ -18,7 +18,7 @@ class ApartmentAdapter(private val apartments: ArrayList<Apartment>): RecyclerVi
     }
 
     override fun onBindViewHolder(holder: ApartmentViewHolder, position: Int) {
-        val (id, nom, description,zone,coordX,coordY,phone,address, photo) = apartments[position]
+        val (id, nom, description,zone,coordX,coordY,phone,address, photo:String?) = apartments[position]
         holder.txvName.text = nom
         holder.txvId.text = id.toString()
         holder.txvZone.text = zone
@@ -32,9 +32,16 @@ class ApartmentAdapter(private val apartments: ArrayList<Apartment>): RecyclerVi
             intent.putExtra("iDesc",description)
             intent.putExtra("iPhone",phone)
             intent.putExtra("iAddress",address)
-            //intent.putExtra("iImage",httpsImages)
-            //intent.putExtra("iLegende",legende)
-            //intent.putExtra("iPeriode",periode)
+            if(photo != null){
+
+                intent.putExtra("iPhotoURL",photo)
+            }
+            else{
+                val url = "None"
+                intent.putExtra("iPhotoURL",url)
+            }
+
+
 
             context.startActivity(intent)
         }

@@ -1,6 +1,7 @@
 package com.ismin.csproject
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.ActionBar
@@ -24,6 +25,7 @@ class ApartmentDetails : AppCompatActivity() {
         val dDesc=intent.getStringExtra("iDesc")
         val dPhone=intent.getStringExtra("iPhone")
         val dAddress=intent.getStringExtra("iAddress")
+        val dPhotoURL=intent.getStringExtra("iPhotoURL")
 
 
         if (actionBar != null) {
@@ -38,10 +40,29 @@ class ApartmentDetails : AppCompatActivity() {
         idPhone.text=dPhone
         idAddress.text=dAddress
 
+        /*val httpsImages= dPhotoURL?.replace("http:","https:")
 
+         */
         val imageView: ImageView = findViewById(R.id.imageView)
+        //Log.i("iPhotoURL",dPhotoURL as String)
+
         val url = "https://cdn.pixabay.com/photo/2018/01/14/23/12/nature-3082832__340.jpg"
-        Picasso.get().load(url).into(imageView);
+
+        if(dPhotoURL.equals("None")){
+            Log.i("iPhotoURL",dPhotoURL as String)
+            Picasso.get().load(url).into(imageView)
+        }else{
+            Log.i("what",url as String)
+
+            Picasso.get().load(dPhotoURL).into(imageView)
+        }
+
+        val defaultImageURL = "https://pngimg.com/uploads/house/house_PNG39.png"
+        val defaultImage: ImageView = findViewById(R.id.defaultImage)
+        Picasso.get().load(defaultImageURL).into(defaultImage)
+
+        //les images ne sont pas toujours accessibles (url broken...)
+        //du coup je mets une image placeholder quand elles ne le sont pas
 
     }
 
