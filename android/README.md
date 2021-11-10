@@ -10,10 +10,13 @@ Run the application on your Android Smartphone or on an emulator device.
 
 Open the application Crous.
 
-For the moment, you can see the list of crous housing in France.
-
-You can scroll the list from top to bottom.
+It includes 3 pages:
+- A list of the apartments in France
 For each accommodation, you will find its name, id and zone.
+For more details, click on an item
+You can scroll the list from top to bottom.
+- A map of the apartments
+- Some informations about the application
 
 ### images
 Most apartments don't have a corresponding image , so a default image is used instead for these apartments.
