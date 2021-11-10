@@ -1,11 +1,20 @@
 package com.ismin.csproject
 
+import android.graphics.Point
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
+import com.google.maps.android.clustering.ClusterItem
+import com.google.maps.android.clustering.ClusterManager
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import retrofit2.Call
 import retrofit2.Callback
@@ -13,12 +22,11 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(),  OnMapReadyCallback {
 
     private val TAG = MainActivity::class.java.simpleName
 
     private val apartmentList = ApartmentList()
-    private lateinit var btnCreateBook: FloatingActionButton
 
     val retrofit = Retrofit.Builder()
         .addConverterFactory(GsonConverterFactory.create())
@@ -30,10 +38,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        loadAllBooks()
+        loadAllApartments()
     }
 
-    private fun loadAllBooks() {
+    private fun loadAllApartments() {
         bookService.getAllApartments().enqueue(object : Callback<List<Apartment>> {
             override fun onResponse(
                 call: Call<List<Apartment>>,
@@ -48,7 +56,11 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onFailure(call: Call<List<Apartment>>, t: Throwable) {
-                Toast.makeText(this@MainActivity, "Error when trying to fetch books" + t.localizedMessage, Toast.LENGTH_LONG).show()
+                Toast.makeText(
+                    this@MainActivity,
+                    "Error when trying to fetch apartments" + t.localizedMessage,
+                    Toast.LENGTH_LONG
+                ).show()
             }
         }
         )
@@ -67,14 +79,6 @@ class MainActivity : AppCompatActivity() {
         fragmentTransaction.replace(R.id.a_main_lyt_fragment_container, fragment)
         fragmentTransaction.commit()
     }
-
-    private fun displayMap() {
-        val fragmentTransaction = supportFragmentManager.beginTransaction()
-        val fragment = MapFragment.newInstance("test map")
-        fragmentTransaction.replace(R.id.a_main_lyt_fragment_container, fragment)
-        fragmentTransaction.commit()
-    }
-
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         super.onCreateOptionsMenu(menu)
@@ -98,5 +102,28 @@ class MainActivity : AppCompatActivity() {
             }
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    private lateinit var mMap: GoogleMap
+
+    override fun onMapReady(googleMap: GoogleMap) {
+        mMap = googleMap
+
+        // Add a marker in Sydney and move the camera
+        val sydney = LatLng(-34.0, 151.0)
+        mMap.addMarker(MarkerOptions()
+            .position(sydney)
+            .title("Marker in Sydney"))
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
+    }
+
+    val supportMapFragment: SupportMapFragment = SupportMapFragment.newInstance()
+//    private lateinit var clusterManager: ClusterManager<Point>
+//
+    private fun displayMap() {
+        val fragmentTransaction = supportFragmentManager.beginTransaction()
+        supportMapFragment.getMapAsync(this)
+        fragmentTransaction.replace(R.id.a_main_lyt_fragment_container, supportMapFragment)
+        fragmentTransaction.commit()
     }
 }
