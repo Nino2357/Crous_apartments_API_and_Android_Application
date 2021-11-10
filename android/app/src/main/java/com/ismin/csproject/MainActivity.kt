@@ -105,6 +105,7 @@ class MainActivity : AppCompatActivity(),  OnMapReadyCallback {
         }
     }
 
+
     private lateinit var mMap: GoogleMap
 
     override fun onMapReady(gmap: GoogleMap) {
@@ -161,3 +162,6 @@ class MainActivity : AppCompatActivity(),  OnMapReadyCallback {
         clusterManager.addItem(Point(lat, lng, title, snippet))
     }
 }
+
+
+
