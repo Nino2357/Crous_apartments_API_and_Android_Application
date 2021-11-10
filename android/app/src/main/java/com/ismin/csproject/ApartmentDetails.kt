@@ -1,10 +1,7 @@
 package com.ismin.csproject
 
-import android.app.Notification
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.ActionBar
 //import com.squareup.picasso.Picasso
@@ -15,11 +12,15 @@ class ApartmentDetails : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_apartment_details)
-        var Id = findViewById<TextView>(R.id.textView)
+        var idNom = findViewById<TextView>(R.id.appartName)
+        var idDesc = findViewById<TextView>(R.id.appartDesc)
+        var idPhone = findViewById<TextView>(R.id.phoneNb)
 
         val actionBar: ActionBar?=supportActionBar
         var intent=intent
         val dTitre=intent.getStringExtra("iNom")
+        val dDesc=intent.getStringExtra("iDesc")
+        val dPhone=intent.getStringExtra("iPhone")
 
 
         if (actionBar != null) {
@@ -30,7 +31,10 @@ class ApartmentDetails : AppCompatActivity() {
         }
 
         //Picasso.get().load(dImage).into(txvImage);
-        Id.text=dTitre
+        idNom.text=dTitre
+        idDesc.text=dDesc
+        idPhone.text=dPhone
+
         //txvPeriode.text=dPeriode
 
     }

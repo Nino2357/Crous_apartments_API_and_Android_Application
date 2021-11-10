@@ -20,7 +20,7 @@ class ApartmentAdapter(private val apartments: ArrayList<Apartment>): RecyclerVi
     }
 
     override fun onBindViewHolder(holder: ApartmentViewHolder, position: Int) {
-        val (id, nom, description,zone) = apartments[position]
+        val (id, nom, description,zone,coordX,coordY,phone) = apartments[position]
         holder.txvName.text = nom
         holder.txvId.text = id.toString()
         holder.txvZone.text = zone
@@ -31,6 +31,9 @@ class ApartmentAdapter(private val apartments: ArrayList<Apartment>): RecyclerVi
         holder.itemView.setOnClickListener{
             val intent= Intent(context,ApartmentDetails::class.java)
             intent.putExtra("iNom",nom)
+            intent.putExtra("iDesc",description)
+            intent.putExtra("iPhone",phone)
+
             //intent.putExtra("iImage",httpsImages)
             //intent.putExtra("iLegende",legende)
             //intent.putExtra("iPeriode",periode)
