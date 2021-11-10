@@ -63,7 +63,14 @@ class MainActivity : AppCompatActivity() {
 
     private fun displayInfo() {
         val fragmentTransaction = supportFragmentManager.beginTransaction()
-        val fragment = InfoFragment.newInstance("test")
+        val fragment = InfoFragment.newInstance("test info")
+        fragmentTransaction.replace(R.id.a_main_lyt_fragment_container, fragment)
+        fragmentTransaction.commit()
+    }
+
+    private fun displayMap() {
+        val fragmentTransaction = supportFragmentManager.beginTransaction()
+        val fragment = MapFragment.newInstance("test map")
         fragmentTransaction.replace(R.id.a_main_lyt_fragment_container, fragment)
         fragmentTransaction.commit()
     }
@@ -82,7 +89,7 @@ class MainActivity : AppCompatActivity() {
                 true
             }
             R.id.main_menu_map -> {
-                displayApartmentList()
+                displayMap()
                 true
             }
             R.id.main_menu_info -> {

@@ -28,13 +28,13 @@ class ApartmentListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_book_list, container, false)
+        val view = inflater.inflate(R.layout.`fragment_apartment_list`, container, false)
 
         val rcvApartments = view.findViewById<RecyclerView>(R.id.f_book_list_rcv_books)
         rcvApartments.layoutManager = LinearLayoutManager(context)
         rcvApartments.adapter = adapter
 
-        return view;
+        return view
     }
 
     companion object {

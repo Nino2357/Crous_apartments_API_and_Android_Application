@@ -9,14 +9,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 
-class InfoFragment : Fragment() {
+class MapFragment : Fragment() {
     private lateinit var apartments: ArrayList<Apartment>
     private lateinit var adapter : ApartmentAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val text = "Info"
+        val text = "Map"
 
     }
 
@@ -24,13 +24,13 @@ class InfoFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_info, container, false)
+        val view = inflater.inflate(R.layout.fragment_map, container, false)
         return view;
     }
 
     companion object {
         @JvmStatic
         fun newInstance(info: String) =
-            InfoFragment().apply {}
+            MapFragment().apply {}
     }
 }
