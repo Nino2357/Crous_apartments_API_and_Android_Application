@@ -15,12 +15,14 @@ class ApartmentDetails : AppCompatActivity() {
         var idNom = findViewById<TextView>(R.id.appartName)
         var idDesc = findViewById<TextView>(R.id.appartDesc)
         var idPhone = findViewById<TextView>(R.id.phoneNb)
+        var idAddress = findViewById<TextView>(R.id.address)
 
         val actionBar: ActionBar?=supportActionBar
         var intent=intent
         val dTitre=intent.getStringExtra("iNom")
         val dDesc=intent.getStringExtra("iDesc")
         val dPhone=intent.getStringExtra("iPhone")
+        val dAddress=intent.getStringExtra("iAddress")
 
 
         if (actionBar != null) {
@@ -34,7 +36,7 @@ class ApartmentDetails : AppCompatActivity() {
         idNom.text=dTitre
         idDesc.text=dDesc
         idPhone.text=dPhone
-
+        idAddress.text=dAddress
         //txvPeriode.text=dPeriode
 
     }

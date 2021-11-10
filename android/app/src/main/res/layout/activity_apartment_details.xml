@@ -9,37 +9,49 @@
 
     <TextView
         android:id="@+id/appartName"
-        android:layout_width="360dp"
-        android:layout_height="80dp"
+        android:layout_width="182dp"
+        android:layout_height="wrap_content"
         android:text="TextView"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.069"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.096" />
-
-    <TextView
-        android:id="@+id/appartDesc"
-        android:layout_width="0dp"
-        android:layout_height="80dp"
-        android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/appartName"
-        app:layout_constraintHorizontal_bias="0.493"
-        app:layout_constraintStart_toStartOf="@+id/appartName"
-        app:layout_constraintTop_toBottomOf="@+id/appartName"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.026" />
 
     <TextView
         android:id="@+id/phoneNb"
         android:layout_width="0dp"
-        android:layout_height="80dp"
+        android:layout_height="42dp"
         android:text="TextView"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/appartDesc"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/appartDesc"
         app:layout_constraintTop_toBottomOf="@+id/appartDesc"
         app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/appartDesc"
+        android:layout_width="376dp"
+        android:layout_height="42dp"
+        android:layout_marginBottom="260dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/appartName"
+        app:layout_constraintTop_toBottomOf="@+id/address"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/address"
+        android:layout_width="0dp"
+        android:layout_height="42dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="@+id/appartDesc"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/appartName"
+        app:layout_constraintTop_toBottomOf="@+id/appartName" />
 </androidx.constraintlayout.widget.ConstraintLayout>
